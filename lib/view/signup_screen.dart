@@ -18,6 +18,7 @@ class _SignupScreenState extends State<SignupScreen> {
   TextEditingController _lastNameTextEditingController = TextEditingController();
   TextEditingController _cityTextEditingController = TextEditingController();
   TextEditingController _bioTextEditingController = TextEditingController();
+  TextEditingController _phoneNumberTextEditingController = TextEditingController();
 
   final _formkey = GlobalKey<FormState>();
 
@@ -141,6 +142,17 @@ class _SignupScreenState extends State<SignupScreen> {
                         textCapitalization: TextCapitalization.words,
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: TextFormField(
+                        decoration: const InputDecoration(labelText: "Telefon Numarası"),
+                        style: const TextStyle(
+                          fontSize: 25,
+                        ),
+                        controller: _phoneNumberTextEditingController,
+                        textCapitalization: TextCapitalization.words,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -191,6 +203,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     _lastNameTextEditingController.text.trim(),
                     _cityTextEditingController.text.trim(),
                     _bioTextEditingController.text.trim(),
+                    _phoneNumberTextEditingController.text.trim(),
                     imageFileOfUser,
                   );
                 },

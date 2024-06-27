@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_places/model/posting_model.dart';
 import 'package:flutter_places/view/view_posting_screen.dart';
-import 'package:flutter_places/view/widgets/filter_Screen.dart';
+import 'package:flutter_places/view/widgets/filter_screen.dart';
 import 'package:flutter_places/view/widgets/posting_grid_tile_ui.dart';
 import 'package:get/get.dart';
 
@@ -144,9 +144,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
                       return InkResponse(
                         onTap: () {
-                          Get.to(ViewPostingScreen(
-                            posting: cPosting,
-                          ));
+                          Get.to(() => ViewPostingScreen(
+                                posting: cPosting,
+                              ));
                         },
                         enableFeedback: true,
                         child: PostingGridTileUI(

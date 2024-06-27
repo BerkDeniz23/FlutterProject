@@ -19,37 +19,50 @@ class _ProfileScreenState extends State<ProfileScreen> {
   modifyHostingMode() async {
     if (AppConstants.currentUser.isHost!) {
       if (AppConstants.currentUser.isCurrentlyHosting!) {
-        AppConstants.currentUser.isCurrentlyHosting = false;
+        setState(() {
+          AppConstants.currentUser.isCurrentlyHosting = false;
+        });
 
-        Get.to(const GuestHomeScreen());
+        await Future.delayed(Duration(milliseconds: 100));
+
+        Get.offAll(() => const GuestHomeScreen());
       } else {
-        AppConstants.currentUser.isCurrentlyHosting = true;
+        setState(() {
+          AppConstants.currentUser.isCurrentlyHosting = true;
+        });
 
-        Get.to(const HostHomeScreen());
+        await Future.delayed(Duration(milliseconds: 100));
+
+        Get.offAll(() => const HostHomeScreen());
       }
     } else {
       await userViewModel.becomeHost(FirebaseAuth.instance.currentUser!.uid);
 
-      AppConstants.currentUser.isCurrentlyHosting = true;
+      setState(() {
+        AppConstants.currentUser.isCurrentlyHosting = true;
+      });
 
-      Get.to(const HostHomeScreen());
+      await Future.delayed(Duration(milliseconds: 100));
+
+      Get.offAll(() => const HostHomeScreen());
     }
   }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
-    if (AppConstants.currentUser.isHost!) {
-      if (AppConstants.currentUser.isCurrentlyHosting!) {
-        _hostingTitle = 'Misafir Arayüzü';
+    setState(() {
+      if (AppConstants.currentUser.isHost!) {
+        if (AppConstants.currentUser.isCurrentlyHosting!) {
+          _hostingTitle = 'Misafir Arayüzü';
+        } else {
+          _hostingTitle = 'Mekan Sahibi arayüzü';
+        }
       } else {
-        _hostingTitle = 'Mekan Sahibi arayüzü';
+        _hostingTitle = 'Mekan sahibiyim';
       }
-    } else {
-      _hostingTitle = 'Mekan sahibiyim';
-    }
+    });
   }
 
   @override

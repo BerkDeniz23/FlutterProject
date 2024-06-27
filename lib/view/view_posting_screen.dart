@@ -7,9 +7,9 @@ import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ViewPostingScreen extends StatefulWidget {
-  PostingModel? posting;
+  final PostingModel? posting;
 
-  ViewPostingScreen({
+  const ViewPostingScreen({
     super.key,
     this.posting,
   });
@@ -63,7 +63,7 @@ class _ViewPostingScreenState extends State<ViewPostingScreen> {
         leading: const BackButton(color: Colors.white),
         backgroundColor: const Color.fromARGB(255, 140, 219, 188),
         title: const Text(
-          'Posting Information',
+          'Mekan Bilgileri',
           style: TextStyle(color: Colors.white),
         ),
       ),
@@ -215,7 +215,7 @@ class _ViewPostingScreenState extends State<ViewPostingScreen> {
                           const SizedBox(width: 8.0),
                           Expanded(
                             child: Text(
-                              'Kapasite: ${posting!.capacity} kişi',
+                              'Kapasite: ${posting!.capacity.toString()} kişi',
                               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -228,7 +228,7 @@ class _ViewPostingScreenState extends State<ViewPostingScreen> {
                           const SizedBox(width: 8.0),
                           Expanded(
                             child: Text(
-                              'Kişi Başı Min Fiyat: ${posting!.price} TL',
+                              'Kişi Başı Min Fiyat: ${posting!.price.toString()} TL',
                               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                             ),
                           ),

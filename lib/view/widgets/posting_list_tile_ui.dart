@@ -31,23 +31,33 @@ class _PostingListTileUIState extends State<PostingListTileUI> {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: ListTile(
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: Text(
-            posting!.name!,
-            maxLines: 2,
-            style: const TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.bold,
+        contentPadding: EdgeInsets.zero,
+        title: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(right: 8.0),
+                child: Text(
+                  posting!.name!,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
             ),
-          ),
-        ),
-        trailing: AspectRatio(
-          aspectRatio: 3 / 2,
-          child: Image(
-            image: posting!.displayImages!.first,
-            fit: BoxFit.fitWidth,
-          ),
+            SizedBox(
+              width: 100, // Resmin genişliğini sabitleyin
+              height: 66.67, // AspectRatio 3/2'ye uygun yükseklik
+              child: Image(
+                image: posting!.displayImages!.first,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ],
         ),
       ),
     );

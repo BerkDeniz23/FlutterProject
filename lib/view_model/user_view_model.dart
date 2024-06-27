@@ -13,7 +13,7 @@ import 'package:get/get.dart';
 class UserViewModel {
   UserModel userModel = UserModel();
 
-  signUp(email, password, firstName, lastName, city, bio, imageFileOfUser) async {
+  signUp(email, password, firstName, lastName, city, bio, phoneNumber, imageFileOfUser) async {
     Get.snackbar("Lütfen bekleyin", "Hesabınızı oluşturuyoruz.");
     try {
       await FirebaseAuth.instance
@@ -32,8 +32,10 @@ class UserViewModel {
           AppConstants.currentUser.lastName = lastName;
           AppConstants.currentUser.city = city;
           AppConstants.currentUser.bio = bio;
+          AppConstants.currentUser.phoneNumber = phoneNumber;
 
-          await saveUserToFirestore(bio, city, email, firstName, lastName, currentUserID)
+          await saveUserToFirestore(
+                  bio, city, email, firstName, lastName, currentUserID, phoneNumber)
               .whenComplete(() async {
             await addImageToFirebaseStorage(imageFileOfUser, currentUserID);
           });
@@ -47,10 +49,11 @@ class UserViewModel {
     }
   }
 
-  Future<void> saveUserToFirestore(bio, city, email, firstName, lastName, id) async {
+  Future<void> saveUserToFirestore(bio, city, email, firstName, lastName, id, phoneNumber) async {
     Map<String, dynamic> dataMap = {
       "bio": bio,
       "email": email,
+      "phoneNumber": phoneNumber,
       "city": city,
       "firstName": firstName,
       "lastName": lastName,
@@ -145,8 +148,8 @@ class UserViewModel {
   logout() async {
     try {
       await FirebaseAuth.instance.signOut();
-      AppConstants.currentUser = UserModel(); // Clear the current user data
-      Get.offAll(() => const LoginScreen()); // Navigate to the login screen
+      AppConstants.currentUser = UserModel();
+      Get.offAll(() => const LoginScreen());
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }

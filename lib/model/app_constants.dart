@@ -51,6 +51,7 @@ class AppConstants {
     'Adana',
     'Antalya',
     'Konya',
+    'Kocaeli',
     'Gaziantep',
     'Şanlıurfa',
     'Mersin',

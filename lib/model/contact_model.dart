@@ -42,7 +42,7 @@ class ContactModel {
     firstName = snapshot['firstName'] ?? "";
     lastName = snapshot['lastName'] ?? "";
     email = snapshot['email'] ?? "";
-    phoneNumber = snapshot['phoneNumber'] ?? "";
+    phoneNumber = snapshot['phoneNumber'];
   }
 
   getImageFromStorage() async {
