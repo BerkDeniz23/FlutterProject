@@ -20,7 +20,6 @@ class _PostingListTileUIState extends State<PostingListTileUI> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     posting = widget.posting;
@@ -50,8 +49,8 @@ class _PostingListTileUIState extends State<PostingListTileUI> {
               ),
             ),
             SizedBox(
-              width: 100, // Resmin genişliğini sabitleyin
-              height: 66.67, // AspectRatio 3/2'ye uygun yükseklik
+              width: 100,
+              height: 66.67,
               child: Image(
                 image: posting!.displayImages!.first,
                 fit: BoxFit.cover,

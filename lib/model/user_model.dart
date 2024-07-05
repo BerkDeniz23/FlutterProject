@@ -18,9 +18,6 @@ class UserModel extends ContactModel {
   bool? isCurrentlyHosting;
   DocumentSnapshot? snapshot;
 
-  List<BookingModel>? bookings;
-  List<ReviewModel>? reviews;
-
   List<PostingModel>? savedPostings;
   List<PostingModel>? myPostings;
 
@@ -37,9 +34,6 @@ class UserModel extends ContactModel {
   }) : super(id: id, firstName: firstName, lastName: lastName, displayImage: displayImage) {
     isHost = false;
     isCurrentlyHosting = false;
-
-    bookings = [];
-    reviews = [];
 
     savedPostings = [];
     myPostings = [];

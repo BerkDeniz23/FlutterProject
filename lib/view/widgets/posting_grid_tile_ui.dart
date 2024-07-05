@@ -27,8 +27,15 @@ class _PostingGridTileUIState extends State<PostingGridTileUI> {
   updateUI() async {
     if (posting != null) {
       await posting!.getFirstImageFromStorage();
-      setState(() {});
+      if (mounted) {
+        setState(() {});
+      }
     }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override

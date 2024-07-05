@@ -132,7 +132,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 if (dataSnapshots.hasData) {
                   var docs = dataSnapshots.data?.docs ?? [];
                   return ListView.builder(
-                    key: UniqueKey(), // Anahtar ekleyin
+                    key: UniqueKey(),
                     physics: const ScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: docs.length,

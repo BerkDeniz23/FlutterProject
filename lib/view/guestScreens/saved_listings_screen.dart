@@ -18,7 +18,6 @@ class _SavedListingsScreenState extends State<SavedListingsScreen> {
   @override
   void initState() {
     super.initState();
-    // Kullanıcı verilerini yükleyin
     AppConstants.currentUser.loadUserInfoFromFirestore().then((_) {
       setState(() {
         _isLoading = false;

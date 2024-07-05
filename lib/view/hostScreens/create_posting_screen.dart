@@ -30,14 +30,14 @@ class _CreatePostingScreenState extends State<CreatePostingScreen> {
   TextEditingController _addressTextEditingController = TextEditingController();
   TextEditingController _amenitiesTextEditingController = TextEditingController();
 
-  final List<String> residenceTypes = [
+  final List<String> category = [
     'Düğün Salonu',
     'Kır Düğünü Mekanı',
     'Otel',
     'Davet Alanları',
     'Sosyal Tesis',
   ];
-  String residenceTypeSelected = "";
+  String categorySelected = "";
   String citySelected = "";
 
   List<MemoryImage>? _imagesList;
@@ -67,7 +67,7 @@ class _CreatePostingScreenState extends State<CreatePostingScreen> {
       _descriptionTextEditingController = TextEditingController(text: "");
       _addressTextEditingController = TextEditingController(text: "");
       _addressTextEditingController = TextEditingController(text: "");
-      residenceTypeSelected = residenceTypes.first;
+      categorySelected = category.first;
       citySelected = AppConstants().cities.first;
 
       _imagesList = [];
@@ -81,7 +81,7 @@ class _CreatePostingScreenState extends State<CreatePostingScreen> {
       _amenitiesTextEditingController =
           TextEditingController(text: widget.posting!.getAmenititesString());
       _imagesList = widget.posting!.displayImages;
-      residenceTypeSelected = widget.posting!.type!;
+      categorySelected = widget.posting!.type!;
       citySelected = widget.posting!.city!;
     }
 
@@ -90,7 +90,6 @@ class _CreatePostingScreenState extends State<CreatePostingScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     initializeValues();
@@ -113,7 +112,7 @@ class _CreatePostingScreenState extends State<CreatePostingScreen> {
                 return;
               }
 
-              if (residenceTypeSelected == "") {
+              if (categorySelected == "") {
                 return;
               }
 
@@ -132,7 +131,7 @@ class _CreatePostingScreenState extends State<CreatePostingScreen> {
               postingModel.address = _addressTextEditingController.text;
               postingModel.city = citySelected;
               postingModel.amenities = _amenitiesTextEditingController.text.split(",");
-              postingModel.type = residenceTypeSelected;
+              postingModel.type = categorySelected;
               postingModel.displayImages = _imagesList;
 
               postingModel.host = AppConstants.currentUser.createUserFromContact();
@@ -167,7 +166,6 @@ class _CreatePostingScreenState extends State<CreatePostingScreen> {
                 Get.snackbar("Listelemeyi Güncelle", "Listelemeniz başarıyla güncellenmiştir.");
               }
 
-              //clear posting model
               postingModel = PostingModel();
 
               Get.to(() => const HostHomeScreen());
@@ -192,7 +190,6 @@ class _CreatePostingScreenState extends State<CreatePostingScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      //Listing name
                       Padding(
                         padding: const EdgeInsets.only(top: 1.0),
                         child: TextFormField(
@@ -209,11 +206,10 @@ class _CreatePostingScreenState extends State<CreatePostingScreen> {
                           },
                         ),
                       ),
-
                       Padding(
                         padding: const EdgeInsets.only(top: 28.0),
                         child: DropdownButton(
-                          items: residenceTypes.map((item) {
+                          items: category.map((item) {
                             return DropdownMenuItem(
                               value: item,
                               child: Text(
@@ -226,11 +222,11 @@ class _CreatePostingScreenState extends State<CreatePostingScreen> {
                           }).toList(),
                           onChanged: (valueItem) {
                             setState(() {
-                              residenceTypeSelected = valueItem.toString();
+                              categorySelected = valueItem.toString();
                             });
                           },
                           isExpanded: true,
-                          value: residenceTypeSelected,
+                          value: categorySelected,
                           hint: const Text(
                             "Mekan tipi",
                             style: TextStyle(
@@ -239,7 +235,6 @@ class _CreatePostingScreenState extends State<CreatePostingScreen> {
                           ),
                         ),
                       ),
-
                       Padding(
                         padding: const EdgeInsets.only(top: 28.0),
                         child: DropdownButton(
@@ -269,7 +264,6 @@ class _CreatePostingScreenState extends State<CreatePostingScreen> {
                           ),
                         ),
                       ),
-
                       Padding(
                         padding: const EdgeInsets.only(top: 21.0),
                         child: Row(
@@ -306,7 +300,6 @@ class _CreatePostingScreenState extends State<CreatePostingScreen> {
                           ],
                         ),
                       ),
-
                       Padding(
                         padding: const EdgeInsets.only(top: 21.0),
                         child: Row(
@@ -335,7 +328,6 @@ class _CreatePostingScreenState extends State<CreatePostingScreen> {
                           ],
                         ),
                       ),
-
                       Padding(
                         padding: const EdgeInsets.only(top: 21.0),
                         child: TextFormField(
@@ -354,8 +346,6 @@ class _CreatePostingScreenState extends State<CreatePostingScreen> {
                           },
                         ),
                       ),
-
-                      //Address
                       Padding(
                         padding: const EdgeInsets.all(0),
                         child: TextFormField(
@@ -373,7 +363,6 @@ class _CreatePostingScreenState extends State<CreatePostingScreen> {
                           },
                         ),
                       ),
-
                       Padding(
                         padding: const EdgeInsets.only(top: 21.0),
                         child: TextFormField(
@@ -393,7 +382,6 @@ class _CreatePostingScreenState extends State<CreatePostingScreen> {
                           minLines: 1,
                         ),
                       ),
-
                       const Padding(
                         padding: EdgeInsets.only(top: 20.0),
                         child: Text(
@@ -404,7 +392,6 @@ class _CreatePostingScreenState extends State<CreatePostingScreen> {
                           ),
                         ),
                       ),
-
                       Padding(
                         padding: const EdgeInsets.only(top: 20.0, bottom: 25.0),
                         child: GridView.builder(
